@@ -1,0 +1,134 @@
+@import "tailwindcss";
+
+@theme {
+  --font-display: "Bricolage Grotesque", "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+  --font-sans: "Plus Jakarta Sans", ui-sans-serif, system-ui, sans-serif;
+
+  --color-board: #0e3b2c;
+  --color-board-deep: #082619;
+  --color-board-soft: #17533d;
+  --color-chalk: #f2efe3;
+  --color-paper: #fcfbf4;
+  --color-paperline: #e6e2d2;
+  --color-marginred: #e5484d;
+  --color-ink: #1e2b25;
+  --color-inksoft: #64716a;
+  --color-gold: #f0b429;
+  --color-goldsoft: #fbe9bd;
+  --color-golddeep: #7d5310;
+  --color-hadir: #15803d;
+  --color-sakit: #d97706;
+  --color-izin: #2563eb;
+  --color-alpa: #dc2626;
+
+  --shadow-sheet: 0 24px 60px -18px rgb(3 20 13 / 0.55), 0 4px 16px -6px rgb(3 20 13 / 0.35);
+  --shadow-card: 0 16px 40px -16px rgb(3 20 13 / 0.5);
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background-color: var(--color-board-deep);
+  background-image:
+    radial-gradient(1100px 520px at 88% -8%, rgb(240 180 41 / 0.1), transparent 62%),
+    radial-gradient(900px 620px at -12% 22%, rgb(23 83 61 / 0.6), transparent 60%),
+    radial-gradient(1000px 700px at 50% 118%, rgb(14 59 44 / 0.55), transparent 62%);
+  background-attachment: fixed;
+  color: var(--color-ink);
+}
+
+/* lapisan grid kapur tipis di seluruh halaman */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgb(242 239 227 / 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgb(242 239 227 / 0.035) 1px, transparent 1px);
+  background-size: 34px 34px;
+}
+
+::selection {
+  background: var(--color-gold);
+  color: var(--color-board-deep);
+}
+
+input[type="date"],
+select {
+  color-scheme: dark;
+}
+
+.tabular {
+  font-variant-numeric: tabular-nums;
+}
+
+@keyframes rise {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+.animate-rise {
+  animation: rise 0.55s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes pop {
+  0% {
+    transform: scale(1.35);
+  }
+  100% {
+    transform: scale(1);
+  }
+}
+.animate-pop {
+  display: inline-block;
+  animation: pop 0.35s ease-out;
+}
+
+@keyframes toastIn {
+  from {
+    opacity: 0;
+    transform: translate(-50%, 18px) scale(0.95);
+  }
+  to {
+    opacity: 1;
+    transform: translate(-50%, 0) scale(1);
+  }
+}
+.animate-toast {
+  animation: toastIn 0.32s cubic-bezier(0.22, 1, 0.36, 1) both;
+}
+
+@keyframes drift {
+  0%,
+  100% {
+    transform: translateY(0);
+    opacity: 0.35;
+  }
+  50% {
+    transform: translateY(-12px);
+    opacity: 0.85;
+  }
+}
+.chalk-dust {
+  animation: drift 5.5s ease-in-out infinite;
+}
+
+@keyframes drawLine {
+  to {
+    stroke-dashoffset: 0;
+  }
+}
+.squiggle path {
+  stroke-dasharray: 320;
+  stroke-dashoffset: 320;
+  animation: drawLine 1.1s 0.35s cubic-bezier(0.6, 0, 0.3, 1) forwards;
+}
